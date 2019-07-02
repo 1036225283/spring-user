@@ -1,0 +1,9 @@
+server.port=2222
+eureka.instance.hostname=localhost
+spring.application.name=a-test-client
+#该应用为注册中心，设置为false，不向注册中心注册自己
+#eureka.client.register-with-eureka=true
+#不需要检索服务
+#eureka.client.fetch-registry=true
+#eureka.client.serviceUrl.defautZone=http://localhost:1111/eureka/
+eureka.client.service-url.defaultZone=http://localhost:1111/eureka/

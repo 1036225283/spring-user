@@ -1,0 +1,16 @@
+server:
+  port: 2223
+
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url.defaultZone: http://localhost:7000/eureka/
+
+spring:
+    application:
+      name: spring-user
+
+
+
