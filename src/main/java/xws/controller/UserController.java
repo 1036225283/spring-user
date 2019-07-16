@@ -1,8 +1,10 @@
 package xws.controller;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +26,9 @@ public class UserController {
     @Value("${spring.application.name}")
     private String applicationName;
 
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public User get() {
@@ -38,6 +43,15 @@ public class UserController {
         User user = new User();
         user.setAge(12);
         user.setUsername("小明");
+        return user;
+    }
+
+    @RequestMapping(value = "/registerUser", method = RequestMethod.GET)
+    public User registerUser() {
+        User user = new User();
+        user.setAge(12);
+        user.setUsername("小明");
+        kafkaTemplate.send("userRegister", JSON.toJSONString(user));
         return user;
     }
 

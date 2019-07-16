@@ -11,6 +11,12 @@ eureka:
 spring:
     application:
       name: spring-user
+    kafka:
+      bootstrap-servers: localhost:9092
+      consumer:
+        group-id: test
+        auto-offset-reset: earliest
+
 
 
 
